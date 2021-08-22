@@ -1,0 +1,269 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "IBM Documentation",
+        "description": "This is an API IBM",
+        "version": "1.0.0",
+        "contact": {
+            "email": "gabriel.bc88@gmail.com"
+        }
+    },
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": ["User Account"],
+                "summary": "Register User",
+                "description": "Register a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                            "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "user name sample",
+                                    "email": "mail@email.com",
+                                    "password": "123456"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Registration failed"
+                    }
+                }
+            }
+        },
+        "/auth/authentication": {
+            "post": {
+                "tags": ["User Account"],
+                "summary": "Authenticate User",
+                "description": "Authenticate a user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "email": "mail@email.com",
+                                    "password": "123456"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Created"
+                },
+                "400": {
+                    "description": "User not found!"
+                }
+            }
+        },
+        "/auth/forgot_password": {
+            "post": {
+                "tags": ["User Account"],
+                "summary": "Forgot Password User",
+                "description": "Forgot Password a user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "email": "mail@email.com"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": ""
+                },
+                "400": {
+                    "description": "Erro on forgot password, try again!"
+                }
+            }
+        },
+        "/auth/reset_password": {
+            "post": {
+                "tags": ["User Account"],
+                "summary": "Reset Password User",
+                "description": "Reset Password a user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "token": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "email": "mail@email.com",
+                                    "token": "e4029f16bf0c512db09f2911a179872d3afe8907",
+                                    "password": "123456"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": ""
+                },
+                "400": {
+                    "description": "Erro on forgot password, try again!"
+                }
+            }
+        },
+        "/books": {
+            "get": {
+                "tags": ["Books"],
+                "summary": "List Books",
+                "description": "List All Books",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error loading books!"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Books"],
+                "summary": "Create Book",
+                "description": "Create a New Book",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "srn": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "stock": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "srn": "SRN Test",
+                                    "title": "Title Test",
+	                                "description": "This is a book test!",
+	                                "author": "Author Test!",
+	                                "stock": 10
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Created"
+                },
+                "400": {
+                    "description": "Error creating book!"
+                }
+            } 
+        },
+        "/books/{id}": {
+            "get": {
+                "tags": ["Books"],
+                "summary": "List Book",
+                "description": "List One Book",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error listing book!"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Books"],
+                "summary": "Update Book",
+                "description": "Update a One Book",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error updating book!"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Books"],
+                "summary": "Delete Book",
+                "description": "Delete a One Book",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Error deleting book!"
+                    }
+                }
+            }
+        }
+    }    
+}
+  
+
+
+
+
+
